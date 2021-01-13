@@ -1,5 +1,6 @@
 import matplotlib.colors as mcolors
 from matplotlib.patches import Polygon
+import matplotlib.pyplot as plt
 import numpy as np
 
 def gradient_fill(x, y, fill_color=None, ax=None, **kwargs):
