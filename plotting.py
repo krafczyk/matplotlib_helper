@@ -3,7 +3,7 @@ from matplotlib.patches import Polygon
 import matplotlib.pyplot as plt
 import numpy as np
 
-def gradient_fill(x, y, fill_color=None, ax=None, **kwargs):
+def gradient_fill(x, y, fill_color=None, ax=None, min_alpha=0.0, fill_alpha=1.0, **kwargs):
     """
     Plot a line with a linear alpha gradient filled beneath it.
 
@@ -38,13 +38,15 @@ def gradient_fill(x, y, fill_color=None, ax=None, **kwargs):
     zorder = line.get_zorder()
     alpha = line.get_alpha()
     alpha = 1.0 if alpha is None else alpha
+    fill_alpha = fill_alpha*alpha
+    min_alpha = (0.0 if min_alpha is None else min_alpha)*fill_alpha
 
     num_segments = 100
     
     z = np.empty((num_segments, 1, 4), dtype=float)
     rgb = mcolors.colorConverter.to_rgb(fill_color)
     z[:,:,:3] = rgb
-    z[:,:,-1] = np.linspace(0, alpha, num_segments)[:,None]
+    z[:,:,-1] = np.linspace(min_alpha, alpha, num_segments)[:,None]
 
     xmin, xmax, ymin, ymax = x.min(), x.max(), y.min(), y.max()
     im = ax.imshow(z, aspect='auto', extent=[xmin, xmax, ymin, ymax],
