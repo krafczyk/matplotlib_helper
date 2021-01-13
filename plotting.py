@@ -1,3 +1,6 @@
+import matplotlib.colors as mcolors
+from matplotlib.patches import Polygon
+
 def gradient_fill(x, y, fill_color=None, ax=None, **kwargs):
     """
     Plot a line with a linear alpha gradient filled beneath it.
