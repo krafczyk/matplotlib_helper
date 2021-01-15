@@ -58,7 +58,6 @@ def gradient_fill(x, y, fill_color=None, ax=None, min_alpha=0.0, fill_alpha=1.0,
     ax.add_patch(clip_path)
     im.set_clip_path(clip_path)
 
-    ax.autoscale(True)
     return line, im
 
 def gradient_fill_about_level(x, y, y_level, fill_color=None, ax=None, min_alpha=0.0, fill_alpha=1.0, **kwargs):
